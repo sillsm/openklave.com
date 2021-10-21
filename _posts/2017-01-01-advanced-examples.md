@@ -4,4 +4,4 @@ layout: post
 categories: media
 ---
 
-{% include embed.html url="https://www.youtube.com/embed/_DT8QNc87F-g" %}
+{% include embed.html url="https://www.youtube.com/embed/DT8QNc87F-g" %}
