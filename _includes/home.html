@@ -4,9 +4,9 @@
 {% for post in paginator.posts %}
   {%- assign pp = site.posts[(paginator.page * {{ forloop.index }}) ] -%}
   <article>
-    {% include meta.html post=post preview=true %}
+    {% include meta.html post=pp preview=true %}
     {{ pp.excerpt }}
-    <div class="more"><a href="{{ post.url | relative_url }}">read more</a></div>
+    <div class="more"><a href="{{ pp.url | relative_url }}">read more</a></div>
   </article>
 {% endfor %}
 
