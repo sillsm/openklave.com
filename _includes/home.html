@@ -7,7 +7,7 @@
     {% include meta.html post=post preview=true %}
     {{ post.excerpt }}
     hi
-    {{ paginator.page | times: forloop.index}}
+    {{ paginator.page | times: forloop.index0 }}
     ih
     <div class="more"><a href="{{ post.url | relative_url }}">read more</a></div>
   </article>
