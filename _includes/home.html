@@ -1,5 +1,6 @@
-{%- assign posts = paginator.posts | default: site.posts -%}
-{% for post in paginator.posts reversed %}
+{%- assign xx = paginator.posts | default: site.posts -%}
+{%- assign posts = xx reversed -%}
+{% for post in posts %}
   <article>
     {% include meta.html post=post preview=true %}
     {{ post.excerpt }}
