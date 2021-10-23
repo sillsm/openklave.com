@@ -1,10 +1,10 @@
 {%- assign posts = paginator.posts | default: site.posts -%}
-{%- assign pp = site.posts[{{ paginator.page }}] -%}
+{%- assign pp = site.posts[paginator.page] -%}
 
 {% for post in site.posts reversed %}
   <article>
     {% include meta.html post=post preview=true %}
-    {{ post.excerpt }}
+    {{ pp.excerpt }}
     <div class="more"><a href="{{ post.url | relative_url }}">read more</a></div>
   </article>
 {% endfor %}
