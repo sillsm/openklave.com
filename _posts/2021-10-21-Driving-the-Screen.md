@@ -1,4 +1,10 @@
-## Learning more about the display (to drive it)
+---
+title:  "Learn how to control the display"
+layout: post
+tag: developer
+---
+
+# Learn About the Display
 
 The LCD Display on the MPK249 is a Winstar model number
 WH2004a.
