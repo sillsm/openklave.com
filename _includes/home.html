@@ -1,14 +1,11 @@
-{%- assign posts = paginator.posts | default: site.posts -%}
+{%- assign posts = paginator.posts | default: site.posts reversed -%}
 {%- assign ssize = site.posts.size -%}
 
 {% for post in paginator.posts %}
-{% capture vv %}{{ forloop.index | times: paginator.page }}{% endcapture %}
-
-  {%- assign pp = site.posts[ vv ] -%}
   <article>
-    {% include meta.html post=pp preview=true %}
-    {{ pp.excerpt }}
-    <div class="more"><a href="{{ pp.url | relative_url }}">read more</a></div>
+    {% include meta.html post=post preview=true %}
+    {{ post.excerpt }}
+    <div class="more"><a href="{{ post.url | relative_url }}">read more</a></div>
   </article>
 {% endfor %}
 
