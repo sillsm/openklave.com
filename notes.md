@@ -4,4 +4,4 @@ permalink: "/notes/"
 layout: page
 ---
 
-Content
+{% include archive.html %}
