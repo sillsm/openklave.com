@@ -13,6 +13,9 @@ It is intended to work around and augment the stock bootloader and operating sys
 
 If the launch goal is reached and there's community interest, we will work towards a from-scratch rewrite of both the bootloader and operating system.
 
+
+
+
 ## Project purpose and copyright note
 
 This project was started because the MPK249 is a beautiful device, full of promise, with terrible software, and almost no support from Akai. It has fun light pads and nice-feeling keys.
