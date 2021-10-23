@@ -2,7 +2,9 @@
 {%- assign ssize = site.posts.size -%}
 
 {% for post in paginator.posts %}
-  {%- assign pp = site.posts[ paginator.page * forloop.index ] -%}
+{% capture vv %}{{ forloop.index }}{% endcapture %}
+
+  {%- assign pp = site.posts[ paginator.page * vv] -%}
   <article>
     {% include meta.html post=pp preview=true %}
     {{ pp.excerpt }}
