@@ -4,7 +4,7 @@
     {% for post in tag[1] %}
     <li>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      {{ post.content | strip_html | truncatewords: 50 }}
+      {{ post.excerpt }}
     </li>
     {% endfor %}
     {% endfor %}
