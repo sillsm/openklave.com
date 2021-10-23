@@ -1,8 +1,9 @@
 {%- assign ss = site.posts -%}
 {%- assign posts = paginator.posts -%}
-{%- assign ssize = paginator.page | minus: 1 | times: 3 | plus: forloop.index0  -%}
+
 
 {% for post in paginator.posts %}
+{%- assign ssize = paginator.page | minus: 1 | times: 3 | plus: forloop.index0  -%}
   <article>
     {% include meta.html post=post preview=true %}
     {{ post.excerpt }}
