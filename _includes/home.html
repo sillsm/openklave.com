@@ -4,7 +4,7 @@
 {% for post in paginator.posts %}
 {% capture vv %}{{ forloop.index | times: paginator.page }}{% endcapture %}
 
-  {%- assign pp = site.posts[ [vv] ] -%}
+  {%- assign pp = site.posts[ vv ] -%}
   <article>
     {% include meta.html post=pp preview=true %}
     {{ pp.excerpt }}
