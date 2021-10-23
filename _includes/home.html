@@ -1,14 +1,14 @@
 {%- assign ss = site.posts -%}
 {%- assign posts = paginator.posts -%}
-{%- assign ssize = site.posts.size -%}
+{%- assign ssize = paginator.page | minus: 1 | times: 3 | plus: forloop.index0  -%}
 
 {% for post in paginator.posts %}
   <article>
     {% include meta.html post=post preview=true %}
     {{ post.excerpt }}
-    hix
-    {{ paginator.page | minus: 1 | times: 3 | plus: forloop.index0 }}
-    ihx
+    h
+    {{ ssize }}
+    h
     <div class="more"><a href="{{ post.url | relative_url }}">read more</a></div>
   </article>
 {% endfor %}
