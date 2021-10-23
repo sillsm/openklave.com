@@ -1,7 +1,7 @@
 {%- assign posts = paginator.posts | default: site.posts -%}
 {%- assign ssize = site.posts.size -%}
 
-{% for post in site.posts %}
+{% for post in paginator.posts %}
   {%- assign pp = site.posts[ssize-(paginator.page * {{ forloop.index }}) ] -%}
   <article>
     {% include meta.html post=post preview=true %}
