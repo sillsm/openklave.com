@@ -15,6 +15,9 @@ WH2004a.
 
 [Here is the full specification](https://www.winstar.com.tw/products/character-lcd-display-module/wh2004a.html) distributed by the manufacturer.
 
+
+
+
 There are a couple of different ways to drive it, but our brand uses '6800 interface (ST7066 IC)'. We're going to have to
 initialize it, send some clock pulses to it from our STM32, and come up with a loop to update the screen.
 
