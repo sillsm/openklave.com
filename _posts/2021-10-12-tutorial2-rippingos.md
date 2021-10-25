@@ -1,5 +1,5 @@
 ---
-title:  "Tutorial 2: Ripping, restoring, and decompiling the factory operating system
+title:  "Tutorial 2: Ripping, restoring, and decompiling the factory operating system"
 layout: post
 tag: developer
 ---
