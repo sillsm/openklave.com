@@ -76,7 +76,10 @@ Read through the code in 'util/flash_os.py', and use it to copy the operating sy
 
 We have now copied the bootloader and operating system to our development computer, and used the factory bootloader to reload the operating system back onto the keyboard just using the USB cable. Let's take a moment and see if we can learn anything about the bootloader code.
 
-Open Ghidra, and import the bootloader ihex file. The format is Intel Hex, and the Language should be Arm Cortex 32-bit little endian. Do not analyze it yet. We need to make a few adjustments first to see it in proper context. First, you should install the SVD-loader plugin for Ghidra from leveldown security. This allows you to take an SVD file, which maps memory areas to text descriptions of peripheral devices to your binary. You can find an XML description of the STM32F103 architecture in the 'util/STM32F103xx.svd.txt".
+Open Ghidra, and import the bootloader ihex file. The format is Intel Hex, and the language should be Arm Cortex 32-bit little endian. Do not analyze it yet. We need to make a few adjustments to see it in proper context. First, you should install the SVD-loader plugin for Ghidra from leveldown security. This allows you to take an SVD file, which maps memory areas to text descriptions of peripheral devices to your binary. You can find an XML description of the STM32F103 architecture in 'util/STM32F103xx.svd.txt", which you can load.
+
+Next, we need to remap Ghidra's memory so it is properly aligning the binary addresses with its internal description of how the STM32F103 works. Finally, open the analyzer and do all the analyses. If everything worked you should see something like this:
+
 
 
 
