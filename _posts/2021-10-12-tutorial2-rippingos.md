@@ -62,7 +62,7 @@ dump ihex memory mpk2os.ihex 0x08006000 0x08033fff
 Now shockingly enough, this bare ihex dump is sufficient to completely restore the operating system if you bork it during development.
 The bootloader has a built-in recovery mode which receives ihex as a sysex message and rerwrites the flash over usb.
 
-# Use the factor bootloader to load the operating system back on to the keyboard
+# Use the factory bootloader to load the operating system back on to the keyboard
 
 Now that we've copied the OS to our development computer, let's load it back onto the device. The factory bootloader does a lot with very little. It has a bare USB driver that is able to accept new software in the form of MIDI Sysex commands from the development computer. Note, if you are using these tutorials to learn about reverse engineering and bare metal OS development generally, you could always just flash an OS back your device using GDB. But throughout Open Klave we rely on the factory bootloader, because it can be accessed using just a USB cable, so non-developers can use Open Klave on their machine without a JTAG probe.
 
@@ -72,6 +72,11 @@ Conveniently, this format is also byte-compatible with [Midi Sysex(https://en.wi
 
 Read through the code in 'util/flash_os.py', and use it to copy the operating system back on the device. First, turn the power off. Then, while holding the 'Push to Enter' button, turn the power back on. Then run the script to copy the OS to the chip.
 
+# Decompile the factory bootloader in Ghidra
+
+We have now copied the bootloader and operating system to our development computer, and used the factory bootloader to reload the operating system back onto the keyboard just using the USB cable. Let's take a moment and see if we can learn anything about the bootloader code.
+
+Open Ghidra, and import the bootloader ihex file. The format is Intel Hex, and the Language should be Arm Cortex 32-bit little endian. Do not analyze it yet. We need to make a few adjustments first to see it in proper context. First, you should install the SVD-loader plugin for Ghidra from leveldown security. This allows you to take an SVD file, which maps memory areas to text descriptions of peripheral devices to your binary. You can find an XML description of the STM32F103 architecture in the 'util/STM32F103xx.svd.txt".
 
 
 
