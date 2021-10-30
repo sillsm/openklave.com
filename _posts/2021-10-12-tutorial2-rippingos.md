@@ -119,6 +119,14 @@ It can be very fruitful to just click through the code in Ghidra and chase diffe
   <img src="/pics/usb_stuff_annotated.png">
 </p>
 
+Ok now, to the ihex parsing. How on earth can we find out where it happens? One technique is to try to identify *special characters* that you know have to be there. For example, we know every ihex record starts with an ascii ":", so it stands to reason the parsing routine would have to look for that, right? Or in assembly speak, there should be a routine somewhere that has to compare byte 0x3a to a value in a different register to see if they are the same. And in fact we find it. Look at the Cortex assembler instructions on the left, and how Ghidra has decompiled them into c-ish on the right. 
+
+<p align="center">
+  <img src="/pics/test_if_char_colon.png">
+</p>
+
+
+
 # Essential Software 
 
 1. Ghidra, for decompiling the system firmware and annotating it.
