@@ -128,3 +128,21 @@ Ok now, to the ihex parsing. How on earth can we find out where it happens? One 
 # A last obstacle: copy-protection and linker memory allocations
 
 An annoying and interesting thing happened the first month I tried to use the factory bootloader to load early versions of Open Klave: It kept erasing it! Every time I reset the power after transmitting the OS, gone. I booted up OpenOCD, established a gdb connection using 'target remote localhost:3333', and had a copy of Ghidra open in the background to investigate.  
+
+Turns out the main loop of the bootloader calls a silly function that checks an address in the operating system. 
+
+<p align="center">
+  <img src="/pics/richard_copy.png">
+</p>
+
+If the operating system's address 0x08033800 doesn't exactly spell out the string "AD4A_Richard," the bootloader nukes it.
+
+## Quick legal aside.
+
+As explained in the legal tutorial, many laws in the United States, including the DMCA, allow for circumventing copy protection for interoperability, repair, and fair use, among other uses. As there is no other way for a keyboard owner to maintain and interface with the keyboard besides storing this magic string at the designated address, it's OK. Especially given Akai's notable historical record of refusing support for older devices, and numerous corporate bankruptcies and restructurings, a device owner has no reasonable expectation the manufacturer will continue to support the device in the future.
+
+## OS solution
+
+
+
+
