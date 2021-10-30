@@ -68,7 +68,7 @@ Now that we've copied the OS to our development computer, let's load it back ont
 
 Earlier, we ripped the operating system and saved it as [IHex, or Intel Hex](https://en.wikipedia.org/wiki/Intel_HEX). IHex is an interesting binary protocol. It is a sequence of records in plaintext, specifying a start address on the chip, and then data to copy to that address. It is coded in ASCII to be human readable. So for example, if you wanted to copy the byte '0xE3' to the device, that would be represented in ihex as 0x69 0x51, the hexidecimal representations of 'e' and '3'. It takes 2n bytes to convey n bytes of information in the format.
 
-Conveniently, this format is also byte-compatible with [Midi Sysex(https://en.wikipedia.org/wiki/MIDI_Machine_Control#MIDI_Universal_Real_Time_SysEx_Message_Format). So basically, you can take a binary written in ihex, and just add F0 and the machine status bytes at the top of the message, and F7 at the end, and the bootloader will understand and copy it to the device. You can even break up ihex messages into chunks for faster transmission.
+Conveniently, this format is also byte-compatible with [Midi Sysex](https://en.wikipedia.org/wiki/MIDI_Machine_Control#MIDI_Universal_Real_Time_SysEx_Message_Format). So basically, you can take a binary written in ihex, and just add F0 and the machine status bytes at the top of the message, and F7 at the end, and the bootloader will understand and copy it to the device. You can even break up ihex messages into chunks for faster transmission.
 
 Read through the code in 'util/flash_os.py', and use it to copy the operating system back on the device. First, turn the power off. Then, while holding the 'Push to Enter' button, turn the power back on. Then run the script to copy the OS to the chip.
 
@@ -100,6 +100,18 @@ We learned above the bootloader starts a USB connection with the host computer, 
 
 We turn to our first of several thousand trips to the STM32f103 developer manual. You can find a mirrored copy [here](https://github.com/sillsm/openklave.com/raw/master/docs/stm32f103%20dev%20manual.pdf). I cannot overstate the importance of reading this manual - literally every single thing you could ever want to know about keyboard's chip is explained in excruciating detail. For these tutorials, we'll start by skimming just a bit at a time when it is relevant so we can develop familiarity with it.
 
+Ok so according to the manual, the interrupt routine that should be called every time there's a USB event is at offset 0x90. 
+
+<p align="center">
+  <img src="/pics/USB_interrupt_man.png">
+</p>
+
+Ah! There's a routine defined there, at address 0x080036d0. As you can see, I hand renamed these addresses and functions, which you can do too in Ghidra by right or long pressing on any address or name and clicking rename.
+
+
+<p align="center">
+  <img src="/pics/USB_entry_routine.png">
+</p>
 
 # Essential Software 
 
