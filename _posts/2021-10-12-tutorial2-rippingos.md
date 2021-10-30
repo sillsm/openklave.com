@@ -12,6 +12,9 @@ and factory operating system to our development computer. We'll finish
 by opening both the bootloader and operating system in Ghidra, and 
 writing some early observations about how they work.
 
+
+
+
 # The memory layout of the STM32F103: Memory-mapped I/O
 
 Here is what the memory layout of the STM32 looks like.
