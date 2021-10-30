@@ -9,6 +9,9 @@ tag: developer
 The LCD Display on the MPK249 is a Winstar model number
 WH2004a.
 
+
+
+
 <p align="center">
   <img width="460" height="300" src="/pics/winstarback.jpg">
 </p>
