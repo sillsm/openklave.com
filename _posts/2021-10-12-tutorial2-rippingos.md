@@ -81,8 +81,15 @@ Open Ghidra, and import the bootloader ihex file. The format is Intel Hex, and t
 Next, we need to remap Ghidra's memory so it is properly aligning the binary addresses with its internal description of how the STM32F103 works. Finally, open the analyzer and do all the analyses. If everything worked you should see something like this:
 
 
+<p align="center">
+  <img width="460" height="300" src="/pics/Ghidra_bootloader_entry.png">
+</p>
 
+This is the 'interrupt vector table'. It specifies 4 byte addresses that should be jumped to when different events happen on the device; for example if a timer goes off, a USB is connected, or the device is powered on. Let's jump to the 'reset' vector in Ghidra. This is the entry point the bootloader goes when the device is turned on:
 
+<p align="center">
+  <img width="460" height="300" src="/pics/Ghidra_start_vector.png">
+</p>
 
 
 # Essential Software 
