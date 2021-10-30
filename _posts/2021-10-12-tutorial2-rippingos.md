@@ -142,7 +142,7 @@ If the operating system's address 0x08033800 doesn't exactly spell out the strin
 
 ## Quick legal aside.
 
-As explained in the legal tutorial, many laws in the United States, including the DMCA, allow for circumventing copy protection, as well as copying, for interoperability, repair, and fair use, among other uses. See [for example](https://en.wikipedia.org/wiki/Lewis_Galoob_Toys,_Inc._v._Nintendo_of_America,_Inc.) As there is no other way for a keyboard owner to maintain and interface with the keyboard besides storing this magic string at the designated address, it's OK. Especially given Akai's notable historical record of refusing support for older devices, and numerous corporate bankruptcies and restructurings, a device owner has no reasonable expectation the manufacturer will continue to support the device in the future.
+As explained in the legal tutorial, many laws in the United States, including the DMCA, allow for circumventing copy protection, as well as copying, for interoperability, repair, and fair use, among other uses. See [for example Lewis Galoob v. Nintendo](https://en.wikipedia.org/wiki/Lewis_Galoob_Toys,_Inc._v._Nintendo_of_America,_Inc.). As there is no other way for a keyboard owner to maintain and interface with the keyboard besides storing this magic string at the designated address, it's OK. Especially given Akai's notable historical record of refusing support for older devices, and numerous corporate bankruptcies and restructurings, a device owner has no reasonable expectation the manufacturer will continue to support the device in the future.
 
 ## Solution
 
