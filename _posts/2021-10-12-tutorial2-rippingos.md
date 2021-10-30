@@ -64,7 +64,7 @@ The bootloader has a built-in recovery mode which receives ihex as a sysex messa
 
 # Use the factor bootloader to load the operating system back on to the keyboard
 
-Now that we've copied the OS to our development computer, let's load it back onto the device. The factory bootloader does a lot with very little. It has a bare USB driver that is able to accept new software in the form of MIDI Sysex commands from the development computer.
+Now that we've copied the OS to our development computer, let's load it back onto the device. The factory bootloader does a lot with very little. It has a bare USB driver that is able to accept new software in the form of MIDI Sysex commands from the development computer. Note, if you are using these tutorials to learn about reverse engineering and bare metal OS development generally, you could always just flash an OS back your device using GDB. But throughout Open Klave we rely on the factory bootloader, because it can be accessed using just a USB cable, so non-developers can use Open Klave on their machine without a JTAG probe.
 
 Earlier, we ripped the operating system and saved it as [IHex, or Intel Hex](https://en.wikipedia.org/wiki/Intel_HEX). IHex is an interesting binary protocol. It is a sequence of records in plaintext, specifying a start address on the chip, and then data to copy to that address. It is coded in ASCII to be human readable. So for example, if you wanted to copy the byte '0xE3' to the device, that would be represented in ihex as 0x69 0x51, the hexidecimal representations of 'e' and '3'. It takes 2n bytes to convey n bytes of information in the format.
 
