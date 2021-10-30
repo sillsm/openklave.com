@@ -141,8 +141,30 @@ If the operating system's address 0x08033800 doesn't exactly spell out the strin
 
 As explained in the legal tutorial, many laws in the United States, including the DMCA, allow for circumventing copy protection for interoperability, repair, and fair use, among other uses. As there is no other way for a keyboard owner to maintain and interface with the keyboard besides storing this magic string at the designated address, it's OK. Especially given Akai's notable historical record of refusing support for older devices, and numerous corporate bankruptcies and restructurings, a device owner has no reasonable expectation the manufacturer will continue to support the device in the future.
 
-## OS solution
+## Solution
 
+In your operating system code you can place something like this, from Open Klave:
+
+```
+// Annoying secret word that needs to go at the
+// end of the binary so the default bootloader doesn't
+// try to delete it.
+// Stored at 0x08033800 by the linker.
+char boot_secret[]  __attribute__((section(".mySection"))) =
+{'A','D','4','A','_','R','i','c','h','a','r','d', 0x1 , 0x0 , 0x2};
+```
+
+and force your linker to put that string in the exact spot in memory its required:
+
+```
+
+/* Define output sections */
+SECTIONS
+{
+  /* placing my named section at given address: */
+    .mySegment 0x08033800 : {KEEP(*(.mySection))}
+...
+```
 
 
 
