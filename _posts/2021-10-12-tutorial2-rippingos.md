@@ -80,16 +80,25 @@ Open Ghidra, and import the bootloader ihex file. The format is Intel Hex, and t
 
 Next, we need to remap Ghidra's memory so it is properly aligning the binary addresses with its internal description of how the STM32F103 works. Finally, open the analyzer and do all the analyses. If everything worked you should see something like this:
 
+<p align="center">
+  <img src="/pics/Ghidra_start_vector.png">
+</p>
+
+
+This is the 'interrupt vector table'. It specifies 4 byte addresses that should be jumped to when different events happen on the device; for example if a timer goes off, a USB is connected, or the device is powered on. Let's jump to the 'reset' vector in Ghidra. This is the entry point the bootloader goes when the device is turned on:
+
 
 <p align="center">
   <img src="/pics/Ghidra_bootloader_entry.png">
 </p>
 
-This is the 'interrupt vector table'. It specifies 4 byte addresses that should be jumped to when different events happen on the device; for example if a timer goes off, a USB is connected, or the device is powered on. Let's jump to the 'reset' vector in Ghidra. This is the entry point the bootloader goes when the device is turned on:
+# Playing with Ghidra: where is ihex loaded in the bootloader?
 
-<p align="center">
-  <img src="/pics/Ghidra_start_vector.png">
-</p>
+Now we're cooking. We can start to do an educational loop: we query where a certain functionality takes place in Ghidra, and we can set a breakpoint in GDB and watch it live. Or we could set a breakpoint in GDB that happens when a value of interest changes, and write down the interesting instruction and examine it in Ghidra.
+
+We learned above the bootloader starts a USB connection with the host computer, and then accepts ihex in the form of a stream of Sysex messages. How do we find out where it is?
+
+We turn to our first of several thousand trips to the STM32f103 developer manual. You can find a mirrored copy [here](https://github.com/sillsm/openklave.com/raw/master/docs/stm32f103%20dev%20manual.pdf). I cannot overstate the importance of reading this manual - literally every single thing you could ever want to know about keyboard's chip is explained in excruciating detail. For these tutorials, we'll start by skimming just a bit at a time when it is relevant so we can develop familiarity with it.
 
 
 # Essential Software 
