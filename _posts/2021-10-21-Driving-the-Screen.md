@@ -1,5 +1,5 @@
 ---
-title:  "Learn how to control the display"
+title:  "Tutorial 4: Put it together to drive the LCD Screen"
 layout: post
 tag: developer
 ---
