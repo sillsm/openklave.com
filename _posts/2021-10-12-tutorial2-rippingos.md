@@ -12,6 +12,59 @@ and factory operating system to our development computer. We'll finish
 by opening both the bootloader and operating system in Ghidra, and 
 writing some early observations about how they work.
 
+# The memory layout of the STM32F103: Memory-mapped I/O
+
+Here is what the memory layout of the STM32 looks like.
+
+<p align="center">
+  <img width="460" height="300" src="https://i.stack.imgur.com/ugTmg.png">
+</p>
+
+Memory addresses are represented in hexidecimal, so each digit goes 1 to 9, then A, B, C, D, E, F.
+
+What's really fascinating is that every part of the chip is represented as a memory address. So when we see which wires are connected to which, we will literally be reading and writing memory addresses. When we write to or read from the USB, it will be abstracted as writing to or reading from memory. As we'll see, our entire operating system will use this abstraction over and over to communicate with the LCD screen, the keyboard buttons, and the USB module.
+
+There are two pieces of software running on the device, the bootloader, and the operating system. The bootloader is executed first, then it finds the stored
+copy of the operating system and loads it into ram.
+
+The bootloader is located from memory address 0x0 to 0x6000, and it is mirrored at 0x08000000 to 0x08006000. Canonically, the operating
+system is located starting at 0x08006000.
+
+The bootloader is 0 to 0x6000 or 24576 bytes. That's not too bad! We have a reasonable chance of reading and understanding what it does if we were to decompile it in Ghidra.
+
+Each memory address stores a byte, which is made of up of two hex digits, like 0xA5, or 0x01, for example, up to 0xFF.
+
+The addressess typically run in sequences of 2 or 4 bytes. 2 byte sequences, like 0x04 0x06 (move the value of register 0 to register 4) are usually Cortex M3 instructions. 4 byte sequences are typically either "vectors," which means they store an address on the chip itself, or 4 byte Cortex M3 instructions.
+
+It can be really hard to read through sequences of bytes to try to figure out which instructions are encoded, forget about whole functions. Decompilers like Ghidra or IDA load these byte sequences and display them in human-readable code so you can understand what is happening.
+
+
+### Ripping the bootloader, the OS, and both.
+
+GDB can copy sectors of memory from your MPK2 to your local filesystem using the [dump command](https://stuff.mit.edu/afs/athena/project/rhel-doc/3/rhel-gdb-en-3/dump-restore-files.html). We've made a script in the util/ folder of the Open Klave source tree to make this easier: "copy_os_from_device.sh".
+
+```
+ dump binary memory bootloader.bin 0 0x6000
+```
+ Will dump the bootloader to a bin file. Note you can also dump it to an ihex file format, which we'll discuss later.
+ Make sure you keep this backup file in a safe place. It is essential to be able to quickly and cleanly load and wipe the chip memory.
+
+ ```
+ dump binary memory mpk2os.bin 0x08006000 0x08033fff
+ ```
+
+ Let's be safe and also dump the os in the ihex format so we can reload it using the bootloader
+
+ ```
+dump ihex memory mpk2os.ihex 0x08006000 0x08033fff
+ ```
+
+Now shockingly enough, this bare ihex dump is sufficient to completely restore the operating system if you bork it during development.
+The bootloader has a built-in recovery mode which receives ihex as a sysex message and rerwrites the flash over usb.
+
+# Use the factor bootloader to load an Operating System on to the keyboard
+
+Now that we've copied the OS to our development computer, let's load it back onto the device. The factory bootloader 
 
 
 
