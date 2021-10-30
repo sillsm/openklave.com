@@ -110,13 +110,13 @@ Ah! There's a routine defined there, at address 0x080036d0. As you can see, I ha
 
 
 <p align="center">
-  <img src="/pics/USB_entry_routine.png">
+  <img src="/pics/usb_entry_routine.png">
 </p>
 
 It can be very fruitful to just click through the code in Ghidra and chase different functions. This figure shows a couple of interesting things. First, we see that the SVD-loader helped define a bunch of USB registers starting at 0x40005c00. When we write our USB driver, we'll start by examining what those registers do in the manual, and writing c pointers that point to these addresses in our operating system so we can easily manipulate them. We also see my attempts to analyze, comment, and rename the USB function in the bootloader to make sense of it. 
 
 <p align="center">
-  <img src="/pics/USB_stuff_annotated.png">
+  <img src="/pics/usb_stuff_annotated.png">
 </p>
 
 # Essential Software 
